@@ -1,0 +1,54 @@
+#!/bin/sh
+
+
+#
+
+
+# Fichier /etc/cron.weekly/squidguard_blacklists
+
+
+#
+
+
+# Télécharge chaque semaine les listes noires pour SquidGuard
+
+
+# et met à jour les bases de ce dernier.
+
+
+ 
+
+if [ -d /var/lib/squidguard ]; then
+
+
+    wget ftp://ftp.univ-tlse1.fr/pub/reseau/cache/squidguard_contrib/blacklists.tar.gz -O /var/lib/squidguard/blacklists.tar.gz
+
+
+    tar zxvf /var/lib/squidguard/blacklists.tar.gz -C /var/lib/squidguard/
+
+
+    rm -rf /var/lib/squidguard/db
+
+
+    mkdir /var/lib/squidguard/db || true
+
+
+    mv -f /var/lib/squidguard/blacklists/* /var/lib/squidguard/db/
+
+
+    chmod 2770 /var/lib/squidguard/db
+
+
+    rm -rf /var/lib/squidguard/blacklists /var/lib/squidguard/blacklists.tar.gz
+
+
+    /usr/bin/squidGuard -C all
+
+
+    chown -R proxy:proxy /etc/squid /var/log/squid /var/spool/squid /usr/lib/squid /usr/sbin/squid /var/lib/squidguard
+
+
+    /etc/init.d/squid restart
+
+
+fi
