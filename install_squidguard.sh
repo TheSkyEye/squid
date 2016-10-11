@@ -49,3 +49,4 @@ acl {
 
 ln -s /etc/squidguard/squidGuard.conf /etc/squid3/
 chown -R proxy:proxy  /var/log/squid3 /var/lib/squidguard
+squidGuard -b -C all
