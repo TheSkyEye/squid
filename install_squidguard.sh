@@ -2,7 +2,7 @@ apt-get install squidguard
 wget http://dsi.ut-capitole.fr/blacklists/download/blacklists.tar.gz
 tar -xzf blacklists.tar.gz
 cp -R blacklists/* /var/lib/squidguard/db/
-cp /etc/squidguard/squidGuard.conf /etc/squidguard/squidGuard.back
+cp /etc/squidguard/squidGuard.conf /etc/squidguard/squidGuard.backup
 echo "#
 # CONFIG FILE FOR SQUIDGUARD
 #
@@ -45,7 +45,7 @@ acl {
         redirect  http://google.fr ##tout ce qui est inderdit est rediriger vers google
   }
 }
->> /etc/squidguard/squidGuard.conf
+" >> /etc/squidguard/squidGuard.conf
 
 ln -s /etc/squidguard/squidGuard.conf /etc/squid3/
 chown -R proxy:proxy  /var/log/squid3 /var/lib/squidguard
