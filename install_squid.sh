@@ -132,3 +132,4 @@ Cette commande vous demandera alors un password, puis la confirmation de celui-c
 
 
 #http://www.ophyde.com/installer-serveur-proxy-squid-squidguard-clamav/
+#https://www.vultr.com/docs/setup-squid3-proxy-server-on-debian
