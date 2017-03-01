@@ -97,7 +97,7 @@ acl {
 tar xzf blacklists.tgz
 cp -R blacklists/* /var/lib/squidguard/db/
 squidGuard -C all
-chown -R proxy /usr/local/squidGuard/db/*
+chown -R proxy:proxy /usr/local/squidGuard/db/*
 
 #
 #
@@ -129,3 +129,6 @@ sudo htpasswd -m /etc/squid3/users nom_utilisateur
 1
 sudo htpasswd -m /etc/squid3/users nom_utilisateur
 Cette commande vous demandera alors un password, puis la confirmation de celui-ci pour l’utilisateur nom_utilisateur, puis ajoutera l’utilisateur en question dans le fichier users.
+
+
+#http://www.ophyde.com/installer-serveur-proxy-squid-squidguard-clamav/
