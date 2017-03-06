@@ -71,7 +71,7 @@ echo '#
 #
 
 dbhome /var/lib/squidguard/db
-logdir /usr/local/squidGuard/logs
+logdir /var/log/squidguard/squidGuard.log
 
 #domaine bloqué
 dest ads {
