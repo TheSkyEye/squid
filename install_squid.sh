@@ -27,7 +27,7 @@ service squid stop
 echo '# Cette première ligne veut dire que Squid écoute sur le port 3128 et
 # qu'il s'attendra à recevoir des requêtes redirigées sans que l'utilisateur 
 # client en ait conscience
-http_port 3128 transparent
+http_port 3128 
 
 # Cette ligne affichera le nom de machine spécifié lors des messages 
 # d'erreurs
@@ -70,13 +70,13 @@ echo '#
 # CONFIG FILE FOR SQUIDGUARD
 #
 
-dbhome /usr/local/squidGuard/db
+dbhome /var/lib/squidguard/db
 logdir /usr/local/squidGuard/logs
 
 #domaine bloqué
-dest adv {
-        domainlist      adv/domains
-        urllist         adv/urls
+dest ads {
+        domainlist      ads/domains
+        urllist         ads/urls
 }
 dest porn {
         domainlist      porn/domains
@@ -89,15 +89,15 @@ dest warez {
 
 acl {
         default {
-                pass    !adv !porn !warez all
+                pass    !ads !porn !warez all
                 redirect http://localhost/block.html
                 }
 }' >> /etc/squidguard/squidGuard.conf
  wget --no-check-certificate http://squidguard.mesd.k12.or.us/blacklists.tgz
 tar xzf blacklists.tgz
 cp -R blacklists/* /var/lib/squidguard/db/
-squidGuard -C all
 chown -R proxy:proxy /usr/local/squidGuard/db/*
+squidGuard -C all
 
 #
 #
